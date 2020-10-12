@@ -1,0 +1,22 @@
+on_actions = {
+    on_startup = {
+        effect = {
+            FKR = {
+      country_event = {
+          id = kor.2
+          days = 0
+                  }
+            }
+        }
+    }
+	on_startup = {
+        effect = {
+            KPA = {
+      country_event = {
+          id = kor.2
+          days = 0
+                  }
+            }
+        }
+    }
+}
