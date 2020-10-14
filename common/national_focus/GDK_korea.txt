@@ -661,6 +661,9 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = KPA_free_joeson
 		}
+		completion_reward = {
+			set_politics = { ruling_party = neutrality elections_allowed = no }
+		}
 		x = 28
 		y = 3
 
@@ -678,6 +681,10 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = KPA_focus_comme
 		}
+		completion_reward = {
+			add_war_support = 0.05
+			add_named_threat = { threat = 5 name = KPA_focus_korea }
+		}
 		x = 23
 		y = 4
 
@@ -691,6 +698,12 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = KPA_focus_korea
+		}
+		completion_reward = {
+			add_popularity = {
+			ideology = communism
+			popularity = -0.5
+			}
 		}
 		x = 26
 		y = 4
@@ -706,6 +719,9 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = KPA_military_junta
 		}
+		completion_reward = {
+			set_politics = { ruling_party = democratic elections_allowed = yes }
+		}
 		x = 30
 		y = 3
 
@@ -718,6 +734,9 @@ focus_tree = {
 			focus = KPA_free_joeson
 			focus = KPA_military_junta
 		}
+		completion_reward = {
+			add_ideas = KPA_korean_militarism1
+		}
 		x = 29
 		y = 4
 
@@ -729,6 +748,9 @@ focus_tree = {
 		prerequisite = {
 			focus = KPA_korean_militarism
 		}
+		completion_reward = {
+			add_ideas = KPA_rebuild_nation1
+		}
 		x = 28
 		y = 5
 
@@ -739,6 +761,9 @@ focus_tree = {
 		cost = 10.00
 		prerequisite = {
 			focus = KPA_korean_militarism
+		}
+		completion_reward = {
+			add_ideas = KPA_new_korea
 		}
 		x = 30
 		y = 5
@@ -753,6 +778,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = KPA_reform_nation
+		}
+		completion_reward = {
+			add_stability = 0.05
 		}
 		x = 29
 		y = 6
@@ -776,6 +804,51 @@ focus_tree = {
 		prerequisite = {
 			focus = KPA_focus_korea
 		}
+		completion_reward = {
+			navy_experience = 50
+			random_owned_controlled_state = {
+				limit = {
+					dockyard > 0
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					dockyard > 0
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+					NOT = { has_state_flag = GER_pride_of_the_modern_germany_dockyards }
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = KPA_break_korean_navy
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = bc_tech
+				category = bb_tech
+				category = shbb_tech
+			}
+		}
 		x = 23
 		y = 5
 
@@ -786,6 +859,11 @@ focus_tree = {
 		cost = 5.00
 		prerequisite = {
 			focus = KPA_break_korean_navy
+		}
+		completion_reward = {
+			FKR = {
+				add_ideas = KPA_korean_blockade1
+				}
 		}
 		x = 23
 		y = 6
@@ -823,6 +901,9 @@ focus_tree = {
 		prerequisite = {
 			focus = KPA_focus_comme
 		}
+		completion_reward = {
+			add_ideas = KPA_focus_troop
+		}
 		x = 26
 		y = 6
 
@@ -837,6 +918,14 @@ focus_tree = {
 		prerequisite = {
 			focus = KPA_new_republic
 		}
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+				create_faction = KPA_peninsula_alliance
+				FKR = { custom_effect_tooltip = invite_to_faction_tt }
+				hidden_effect = {
+					FKR = { country_event = generic.5 }
+					}
+		}
 		x = 27
 		y = 7
 
@@ -849,6 +938,12 @@ focus_tree = {
 			focus = KPA_korean_peninsula_alliance
 			focus = KPA_war_with_korea
 		}
+		completion_reward = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = SOV
+			}
+		}
 		x = 25
 		y = 8
 
@@ -859,6 +954,12 @@ focus_tree = {
 		cost = 10.00
 		prerequisite = {
 			focus = KPA_korean_blockade
+		}
+		completion_reward = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = FKR
+			}
 		}
 		x = 23
 		y = 7
@@ -873,6 +974,12 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = KPA_vladivostok
+		}
+		completion_reward = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = JAP
+			}
 		}
 		x = 27
 		y = 9
@@ -943,6 +1050,12 @@ focus_tree = {
 		prerequisite = {
 			focus = KPA_sun_down
 		}
+		completion_reward = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = CHI
+			}
+		}
 		x = 27
 		y = 10
 
@@ -967,6 +1080,13 @@ focus_tree = {
 		cost = 10.00
 		prerequisite = {
 			focus = KPA_attack_chi
+		}
+		completion_reward = {
+			remove_from_faction = KPA_peninsula_alliance
+			declare_war_on = {
+				target = FKR
+				type = annex_everything
+			}
 		}
 		x = 27
 		y = 11
